@@ -1,5 +1,7 @@
-import package 
+
+
 import "fmt"
+
 func FizzBuzz(a int) int {
 	for i := 1; i <= a; i++ {
 		if i%3 == 0 {
@@ -17,7 +19,7 @@ func FizzBuzz(a int) int {
 	fmt.Println()
 	return 0
 }
-func main(){
+func main() {
 	FizzBuzz(1)
 	FizzBuzz(3)
 	FizzBuzz(15)
