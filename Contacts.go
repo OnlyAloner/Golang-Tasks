@@ -47,13 +47,14 @@ func (This *ContactManager) update(updContact Contact) *Contact {
 func (This *ContactManager) delete(delContact Contact) *Contact {
 	for ind, elem := range This.Contacts {
 		if elem.ID == delContact.ID {
-			Deleted := This.Contacts[ind]
+
 			This.Contacts = append(This.Contacts[:ind], This.Contacts[ind+1:]...)
-			return &Deleted
+			return &delContact // If contact not finded or he was deleted we will return the pointer to delContact
+
 		}
 	}
 
-	return &delContact // If contact nod finded we will return the pointer to delContact
+	return &delContact // If contact not finded or he was deleted we will return the pointer to delContact
 }
 
 func (This *ContactManager) get(ID int) *Contact {
@@ -63,7 +64,7 @@ func (This *ContactManager) get(ID int) *Contact {
 		}
 	}
 
-	return &Contact{}
+	return &Contact{} // If we find we return the pointer to element, otherwise pointer to empty Contact
 }
 
 func (This *ContactManager) GetAll() *[]Contact {
