@@ -1,5 +1,7 @@
-import package 
+package main
+
 import "fmt"
+
 func Nthfibonacci(a int) int { // Time Complexity O(n), Space Complexity O(1)
 
 	var (
@@ -15,7 +17,7 @@ func Nthfibonacci(a int) int { // Time Complexity O(n), Space Complexity O(1)
 
 	return fib2
 }
-func main(){
+func main() {
 	fmt.Println(Nthfibonacci(1))
 	fmt.Println(Nthfibonacci(2))
 	fmt.Println(Nthfibonacci(3))
