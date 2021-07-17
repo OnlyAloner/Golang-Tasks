@@ -93,14 +93,14 @@ func TestCreate(t *testing.T) {
 
 func TestUpdate(t *testing.T) {
 
-	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	for _, ppl := range TestsForContactUpdate {
 
 		output := p.update(ppl)
 
 		if output == &ppl {
-			t.Error("Failed to Update obeject cause we cant find the contact with this ID: ", ppl)
+			t.Error("Failed to Update object cause we cant find the contact with this ID: ", ppl)
 		} else if *output != ppl {
 			t.Error("Failed to Update object or slice was changed", ppl)
 		}
@@ -110,21 +110,22 @@ func TestUpdate(t *testing.T) {
 }
 func TestDelete(t *testing.T) {
 
-	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
-	for _, ppl := range Persons {
+	for _, ppl := range TestsForContactUpdate {
 
-		output := p.delete(ppl)
+		output := p.delete(&ppl)
 
 		if output != &ppl {
 			t.Error("Failed to Delete object: ", ppl)
 		}
 	}
+
 }
 
 func TestGet(t *testing.T) {
 
-	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	output := p.get(1)
 	emptyPointer := &Contact{}
@@ -137,7 +138,7 @@ func TestGet(t *testing.T) {
 }
 func TestGetAll(t *testing.T) {
 
-	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	if p.GetAll() != &p.Contacts {
 		t.Error("failed to get the list of contacts")
