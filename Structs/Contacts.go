@@ -1,4 +1,4 @@
-package main
+package structs
 
 type Contact struct {
 	ID int
@@ -7,7 +7,7 @@ type Contact struct {
 	Firstname,
 	Lastname,
 	Email,
-	CreateadAt string
+	CreatedAt string
 }
 type ContactManager struct {
 	Contacts []Contact
