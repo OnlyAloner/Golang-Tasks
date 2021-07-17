@@ -72,19 +72,13 @@ func TestCreate(t *testing.T) {
 
 	for _, ppl := range Persons {
 
-		Passed := true
-
 		temp := &Contact{}
 
 		output := p.create(ppl)
 
-		if output == temp {
-			Passed = false
+		if *output == *temp { // If "create" function returned the empty pointer or pointer to element that not equal to the our Contact we will return the error
+			t.Error("Failed to Create object cause pointer is empty", ppl)
 		} else if *output != ppl {
-			Passed = false
-		}
-
-		if !Passed { // If "create" function returned the empty pointer or pointer to element that not equal to the our Contact we will return the error
 			t.Error("Failed to Create object: ", ppl)
 		}
 	}
@@ -93,7 +87,7 @@ func TestCreate(t *testing.T) {
 
 func TestUpdate(t *testing.T) {
 
-	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	for _, ppl := range TestsForContactUpdate {
 
@@ -108,9 +102,10 @@ func TestUpdate(t *testing.T) {
 	}
 
 }
+
 func TestDelete(t *testing.T) {
 
-	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	for _, ppl := range TestsForContactUpdate {
 
@@ -125,20 +120,22 @@ func TestDelete(t *testing.T) {
 
 func TestGet(t *testing.T) {
 
-	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	output := p.get(1)
+
 	emptyPointer := &Contact{}
-	if output == emptyPointer {
+
+	if *output == *emptyPointer {
 		t.Error("Failed to Get contact with id: 1. Because object was not found")
-	} else if output.ID != 1 {
+	} else if (*output).ID != 1 {
 		t.Error("Failes to Get contact with id: 1.")
 	}
 
 }
 func TestGetAll(t *testing.T) {
 
-	//TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
+	TestCreate(t) //We will be able to test each function separately, without the need to check the entire test
 
 	if p.GetAll() != &p.Contacts {
 		t.Error("failed to get the list of contacts")
